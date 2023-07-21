@@ -1,0 +1,4 @@
+Bundle-Name: visa-portlet
+Bundle-SymbolicName: com.liferay.gwenod.visa.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.gwenod.visa.portlet.constants

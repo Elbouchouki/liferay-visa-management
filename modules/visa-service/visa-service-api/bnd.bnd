@@ -1,0 +1,10 @@
+Bundle-Name: visa-service-api
+Bundle-SymbolicName: com.liferay.gwenod.visa.service.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.gwenod.visa.service.exception,\
+	com.liferay.gwenod.visa.service.model,\
+	com.liferay.gwenod.visa.service.service,\
+	com.liferay.gwenod.visa.service.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../visa-service-service/service.xml
