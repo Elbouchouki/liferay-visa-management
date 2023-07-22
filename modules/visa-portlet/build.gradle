@@ -16,7 +16,9 @@ dependencies {
       compileOnly group: "javax.portlet", name: "portlet-api"
       compileOnly group: "javax.servlet", name: "javax.servlet-api"
       compileOnly group: "jstl", name: "jstl"
-      compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"*/
+      compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+
+      */
 
     compileOnly project(":modules:visa-service:visa-service-api")
 

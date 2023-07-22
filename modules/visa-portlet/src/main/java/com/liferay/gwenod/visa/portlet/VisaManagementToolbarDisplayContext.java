@@ -2,21 +2,24 @@ package com.liferay.gwenod.visa.portlet;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.BaseManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
-import com.liferay.gwenod.visa.portlet.constants.MVCCommandNames;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.*;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
+import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDisplayContext {
 
     private final PortalPreferences _portalPreferences;
-    private final ThemeDisplay _themeDisplay;
 
     public VisaManagementToolbarDisplayContext(
             LiferayPortletRequest liferayPortletRequest,
@@ -27,8 +30,6 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
         _portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
                 liferayPortletRequest);
 
-        _themeDisplay = (ThemeDisplay) httpServletRequest.getAttribute(
-                WebKeys.THEME_DISPLAY);
     }
 
     @Override
@@ -39,10 +40,10 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
                         dropdownItem -> {
                             dropdownItem.setHref(
                                     liferayPortletResponse.createRenderURL(),
-                                    "mvcRenderCommandName", MVCCommandNames.ADD_VISA,
+                                    "mvcRenderCommandName", VisaPortletKeys.MVCCommandNames.ADD_VISA,
                                     "redirect", currentURLObj.toString());
                             dropdownItem.setLabel(
-                                    LanguageUtil.get(request, "add-assignment"));
+                                    LanguageUtil.get(httpServletRequest, "visa.add"));
                         });
             }
         };
@@ -50,7 +51,7 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
 
     @Override
     protected String[] getNavigationKeys() {
-        return new String[]{"all", "pending", "done"};
+        return new String[]{"All", "Pending", "Confirmed", "Rejected"};
     }
 
     @Override
@@ -65,7 +66,8 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
         if (Validator.isNull(displayStyle)) {
             displayStyle = _portalPreferences.getValue(
                     VisaPortletKeys.VISA, "visa-display-style",
-                    "descriptive");
+                    "table");
+
         } else {
             _portalPreferences.setValue(
                     VisaPortletKeys.VISA, "visa-display-style",
@@ -78,76 +80,33 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
         return displayStyle;
     }
 
-   /* @Override
-    protected List<DropdownItem> getOrderByDropdownItems() {
-        return new DropdownItemList() {
-            {
-                add(
-                        dropdownItem -> {
-                            dropdownItem.setActive("title".equals(getOrderByCol()));
-                            dropdownItem.setHref(
-                                    _getCurrentSortingURL(), "orderByCol", "title");
-                            dropdownItem.setLabel(
-                                    LanguageUtil.get(request, "title"));
-                        });
 
-                add(
-                        dropdownItem -> {
-                            dropdownItem.setActive(
-                                    "createDate".equals(getOrderByCol()));
-                            dropdownItem.setHref(
-                                    _getCurrentSortingURL(), "orderByCol",
-                                    "createDate");
-                            dropdownItem.setLabel(
-                                    LanguageUtil.get(request, "create-date"));
-                        });
-            }
-        };
-    }
-    private PortletURL _getCurrentSortingURL() throws PortletException {
-        PortletURL sortingURL = PortletURLUtil.clone(
-                currentURLObj, liferayPortletResponse);
-
-        sortingURL.setParameter(
-                "mvcRenderCommandName", "/visas/view");
-
-        // Reset current page.
-
-        sortingURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
-
-        String keywords = ParamUtil.getString(request, "keywords");
-
-        if (Validator.isNotNull(keywords)) {
-            sortingURL.setParameter("keywords", keywords);
-        }
-
-        return sortingURL;
-    }
-    */
-
-
-    /*@Override
+    @Override
     public String getSearchActionURL() {
 
         PortletURL searchURL = liferayPortletResponse.createRenderURL();
 
-
-        searchURL.setProperty("mvcRenderCommandName", "/visas/view");
+        searchURL.setProperty(
+                "mvcRenderCommandName", VisaPortletKeys.MVCCommandNames.VIEW_VISAS);
 
         String navigation = ParamUtil.getString(
-                httpServletRequest,
-                "navigation",
-                "entries"
+                httpServletRequest, "navigation", "All"
         );
 
-        String orderByCol = ParamUtil.getString(httpServletRequest, "orderByCol", "cin");
-        String orderByType = ParamUtil.getString(httpServletRequest, "orderByType", "asc");
+        searchURL.setParameter("navigation", navigation);
+        searchURL.setParameter("orderByCol", getOrderByCol());
+        searchURL.setParameter("orderByType", getOrderByType());
 
-        searchURL.getRenderParameters().setValue("navigation", navigation);
-        searchURL.getRenderParameters().setValue("orderByCol", orderByCol);
-        searchURL.getRenderParameters().setValue("orderByType", orderByType);
+        System.out.println("searchURL: " + searchURL.toString());
 
         return searchURL.toString();
-    }*/
+    }
 
+    public String getOrderByCol() {
+        return ParamUtil.getString(httpServletRequest, "orderByCol", "title");
+    }
+
+    public String getOrderByType() {
+        return ParamUtil.getString(httpServletRequest, "orderByType", "asc");
+    }
 }

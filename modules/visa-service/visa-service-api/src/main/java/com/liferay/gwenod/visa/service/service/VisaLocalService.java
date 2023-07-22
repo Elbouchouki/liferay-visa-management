@@ -16,6 +16,7 @@ package com.liferay.gwenod.visa.service.service;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.gwenod.visa.service.exception.NoSuchVisaException;
+import com.liferay.gwenod.visa.service.exception.VisaValidationException;
 import com.liferay.gwenod.visa.service.model.Visa;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
@@ -67,9 +68,10 @@ public interface VisaLocalService
 	 * Never modify this interface directly. Add custom service methods to <code>com.liferay.gwenod.visa.service.service.impl.VisaLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the visa local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link VisaLocalServiceUtil} if injection and service tracking are not available.
 	 */
 	public Visa addVisa(
-		String cin, String passport, String nom, String prenom,
-		Date dateNaissance, String motifVoyage, Date dataVoyage,
-		int dureeVoyage, ServiceContext serviceContext);
+			String cin, String passport, String nom, String prenom,
+			Date dateNaissance, String motifVoyage, Date dataVoyage,
+			int dureeVoyage, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Adds the visa to the database. Also notifies the appropriate model listeners.
@@ -295,6 +297,15 @@ public interface VisaLocalService
 	public List<Visa> getVisas(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Visa> getVisasByKeywords(
+		long userId, String keywords, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Visa> getVisasByKeywords(
+		long userId, String keywords, int start, int end,
+		OrderByComparator<Visa> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Visa> getVisasByUserId(long userId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -338,11 +349,14 @@ public interface VisaLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getVisasCount();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getVisasCountByKeywords(long userId, String keywords);
+
 	public Visa updateVisa(
 			long visaId, String cin, String passport, String nom, String prenom,
 			Date dateNaissance, String motifVoyage, Date dataVoyage,
-			int dureeVoyage, ServiceContext serviceContext)
-		throws NoSuchVisaException;
+			int dureeVoyage, String etat, ServiceContext serviceContext)
+		throws NoSuchVisaException, VisaValidationException;
 
 	/**
 	 * Updates the visa in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

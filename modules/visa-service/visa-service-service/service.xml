@@ -4,7 +4,7 @@
 
 <service-builder dependency-injector="ds" package-path="com.liferay.gwenod.visa.service">
     <namespace>VisaManagement</namespace>
-    <entity local-service="true" name="Visa" remote-service="false" uuid="true">
+    <entity local-service="true" name="Visa" remote-service="true" uuid="true">
 
         <!-- PK fields -->
 
@@ -63,4 +63,7 @@
         <reference entity="AssetTag" package-path="com.liferay.portlet.asset"/>
     </entity>
 
+    <exceptions>
+        <exception>VisaValidation</exception>
+    </exceptions>
 </service-builder>

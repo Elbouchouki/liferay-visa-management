@@ -22,6 +22,7 @@ import com.liferay.gwenod.visa.service.model.VisaModel;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.User;
@@ -61,6 +62,7 @@ import java.util.function.Function;
  * @see VisaImpl
  * @generated
  */
+@JSON(strict = true)
 public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 
 	/*
@@ -355,6 +357,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 
 	}
 
+	@JSON
 	@Override
 	public String getUuid() {
 		if (_uuid == null) {
@@ -383,6 +386,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		return getColumnOriginalValue("uuid_");
 	}
 
+	@JSON
 	@Override
 	public long getVisaId() {
 		return _visaId;
@@ -397,6 +401,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_visaId = visaId;
 	}
 
+	@JSON
 	@Override
 	public long getGroupId() {
 		return _groupId;
@@ -420,6 +425,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		return GetterUtil.getLong(this.<Long>getColumnOriginalValue("groupId"));
 	}
 
+	@JSON
 	@Override
 	public long getCompanyId() {
 		return _companyId;
@@ -444,6 +450,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 			this.<Long>getColumnOriginalValue("companyId"));
 	}
 
+	@JSON
 	@Override
 	public long getUserId() {
 		return _userId;
@@ -483,6 +490,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		return GetterUtil.getLong(this.<Long>getColumnOriginalValue("userId"));
 	}
 
+	@JSON
 	@Override
 	public String getUserName() {
 		if (_userName == null) {
@@ -502,6 +510,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_userName = userName;
 	}
 
+	@JSON
 	@Override
 	public Date getCreateDate() {
 		return _createDate;
@@ -516,6 +525,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_createDate = createDate;
 	}
 
+	@JSON
 	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
@@ -536,6 +546,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	@Override
 	public long getModifiedBy() {
 		return _modifiedBy;
@@ -550,6 +561,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_modifiedBy = modifiedBy;
 	}
 
+	@JSON
 	@Override
 	public String getCin() {
 		if (_cin == null) {
@@ -578,6 +590,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		return getColumnOriginalValue("cin");
 	}
 
+	@JSON
 	@Override
 	public String getPassport() {
 		if (_passport == null) {
@@ -606,6 +619,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		return getColumnOriginalValue("passport");
 	}
 
+	@JSON
 	@Override
 	public String getNom() {
 		if (_nom == null) {
@@ -625,6 +639,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_nom = nom;
 	}
 
+	@JSON
 	@Override
 	public String getPrenom() {
 		if (_prenom == null) {
@@ -644,6 +659,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_prenom = prenom;
 	}
 
+	@JSON
 	@Override
 	public Date getDateNaissance() {
 		return _dateNaissance;
@@ -658,6 +674,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_dateNaissance = dateNaissance;
 	}
 
+	@JSON
 	@Override
 	public String getMotifVoyage() {
 		if (_motifVoyage == null) {
@@ -677,6 +694,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_motifVoyage = motifVoyage;
 	}
 
+	@JSON
 	@Override
 	public Date getDateVoyage() {
 		return _dateVoyage;
@@ -691,6 +709,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_dateVoyage = dateVoyage;
 	}
 
+	@JSON
 	@Override
 	public int getDureeVoyage() {
 		return _dureeVoyage;
@@ -705,6 +724,7 @@ public class VisaModelImpl extends BaseModelImpl<Visa> implements VisaModel {
 		_dureeVoyage = dureeVoyage;
 	}
 
+	@JSON
 	@Override
 	public String getEtat() {
 		if (_etat == null) {

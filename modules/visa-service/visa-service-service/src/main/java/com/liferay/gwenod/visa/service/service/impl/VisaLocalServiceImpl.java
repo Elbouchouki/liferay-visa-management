@@ -15,12 +15,21 @@
 package com.liferay.gwenod.visa.service.service.impl;
 
 import com.liferay.gwenod.visa.service.exception.NoSuchVisaException;
+import com.liferay.gwenod.visa.service.exception.VisaValidationException;
 import com.liferay.gwenod.visa.service.model.Visa;
 import com.liferay.gwenod.visa.service.service.base.VisaLocalServiceBaseImpl;
+import com.liferay.gwenod.visa.service.validator.VisaValidator;
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.dao.orm.Disjunction;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.Validator;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import java.util.Date;
 import java.util.List;
@@ -35,12 +44,14 @@ import java.util.Optional;
 )
 public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
 
+    @Reference
+    private VisaValidator visaValidator;
 
     public Visa addVisa(
             String cin, String passport, String nom,
             String prenom, Date dateNaissance, String motifVoyage,
             Date dataVoyage, int dureeVoyage, ServiceContext serviceContext
-    ) {
+    ) throws PortalException {
         Visa visa = createVisa(counterLocalService.increment());
 
         visa.setUserId(serviceContext.getUserId());
@@ -50,7 +61,7 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
 
         fillEntity(
                 visa, cin, passport, nom, prenom, dateNaissance,
-                motifVoyage, dataVoyage, dureeVoyage
+                motifVoyage, dataVoyage, dureeVoyage, "En attente"
         );
 
         return visaPersistence.update(visa);
@@ -60,8 +71,9 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
             long visaId,
             String cin, String passport, String nom,
             String prenom, Date dateNaissance, String motifVoyage,
-            Date dataVoyage, int dureeVoyage, ServiceContext serviceContext
-    ) throws com.liferay.gwenod.visa.service.exception.NoSuchVisaException {
+            Date dataVoyage, int dureeVoyage, String etat,
+            ServiceContext serviceContext
+    ) throws com.liferay.gwenod.visa.service.exception.NoSuchVisaException, VisaValidationException {
         Visa visa = this.getVisaById(visaId).orElseThrow(
                 () -> new NoSuchVisaException("Visa with id " + visaId + " not found")
         );
@@ -71,7 +83,7 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
 
         fillEntity(
                 visa, cin, passport, nom, prenom, dateNaissance,
-                motifVoyage, dataVoyage, dureeVoyage
+                motifVoyage, dataVoyage, dureeVoyage, etat
         );
 
         return visaPersistence.update(visa);
@@ -120,6 +132,58 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
         return visaPersistence.findByUserId(userId, start, end, orderByComparator);
     }
 
+    // find visas by user id and keywords
+
+    public List<Visa> getVisasByKeywords(
+            long userId, String keywords, int start, int end
+    ) {
+        return visaLocalService.dynamicQuery(
+                getKeywordSearchDynamicQuery(userId, keywords), start, end
+        );
+    }
+
+    public List<Visa> getVisasByKeywords(
+            long userId, String keywords, int start, int end,
+            OrderByComparator<Visa> orderByComparator) {
+        return visaLocalService.dynamicQuery(
+                getKeywordSearchDynamicQuery(userId, keywords), start, end,
+                orderByComparator);
+    }
+
+    public long getVisasCountByKeywords(long userId, String keywords) {
+        return visaLocalService.dynamicQueryCount(
+                getKeywordSearchDynamicQuery(userId, keywords));
+    }
+
+
+    private DynamicQuery getKeywordSearchDynamicQuery(
+            long userId, String keywords) {
+        DynamicQuery dynamicQuery = dynamicQuery().add(
+                RestrictionsFactoryUtil.eq("userId", userId));
+        if (Validator.isNotNull(keywords)) {
+            Disjunction disjunctionQuery =
+                    RestrictionsFactoryUtil.disjunction();
+            disjunctionQuery.add(
+                    RestrictionsFactoryUtil.like(
+                            "cin", "%" + keywords + "%")
+            );
+            disjunctionQuery.add(
+                    RestrictionsFactoryUtil.like(
+                            "passport", "%" + keywords + "%")
+            );
+            disjunctionQuery.add(
+                    RestrictionsFactoryUtil.like(
+                            "nom", "%" + keywords + "%")
+            );
+            disjunctionQuery.add(
+                    RestrictionsFactoryUtil.like(
+                            "prenom", "%" + keywords + "%")
+            );
+            dynamicQuery.add(disjunctionQuery);
+        }
+        return dynamicQuery;
+    }
+
 
     private Optional<Visa> getVisaById(long visaId) {
         return Optional.ofNullable(visaPersistence.fetchByPrimaryKey(visaId));
@@ -129,8 +193,8 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
             Visa visa,
             String cin, String passport, String nom,
             String prenom, Date dateNaissance, String motifVoyage,
-            Date dataVoyage, int dureeVoyage
-    ) {
+            Date dataVoyage, int dureeVoyage, String etat
+    ) throws VisaValidationException {
         if (visa == null) return;
         if (cin != null) visa.setCin(cin);
         if (passport != null) visa.setPassport(passport);
@@ -140,6 +204,9 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
         if (motifVoyage != null) visa.setMotifVoyage(motifVoyage);
         if (dataVoyage != null) visa.setDateVoyage(dataVoyage);
         if (dureeVoyage != 0) visa.setDureeVoyage(dureeVoyage);
+        if (etat != null) visa.setEtat(etat);
+        visaValidator.validate(visa);
+
     }
 
 }

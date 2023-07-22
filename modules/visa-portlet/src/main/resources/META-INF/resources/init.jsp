@@ -5,7 +5,17 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib prefix="clay" uri="http://liferay.com/tld/clay" %>
-<%@ page import="com.liferay.gwenod.visa.portlet.constants.MVCCommandNames" %>
+<%@ taglib prefix="liferay-frontend" uri="http://liferay.com/tld/frontend" %>
+
+<%@ page import="com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys" %>
+<%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
+<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
+
+<%@ page import="com.liferay.gwenod.visa.service.model.VisaModel" %>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+
+
+<liferay-frontend:defineObjects/>
 
 <liferay-theme:defineObjects/>
 

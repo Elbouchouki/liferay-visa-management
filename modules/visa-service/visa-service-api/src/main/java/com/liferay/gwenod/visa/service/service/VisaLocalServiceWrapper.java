@@ -36,10 +36,11 @@ public class VisaLocalServiceWrapper
 
 	@Override
 	public com.liferay.gwenod.visa.service.model.Visa addVisa(
-		String cin, String passport, String nom, String prenom,
-		java.util.Date dateNaissance, String motifVoyage,
-		java.util.Date dataVoyage, int dureeVoyage,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+			String cin, String passport, String nom, String prenom,
+			java.util.Date dateNaissance, String motifVoyage,
+			java.util.Date dataVoyage, int dureeVoyage,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _visaLocalService.addVisa(
 			cin, passport, nom, prenom, dateNaissance, motifVoyage, dataVoyage,
@@ -377,6 +378,26 @@ public class VisaLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.gwenod.visa.service.model.Visa>
+		getVisasByKeywords(long userId, String keywords, int start, int end) {
+
+		return _visaLocalService.getVisasByKeywords(
+			userId, keywords, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.service.model.Visa>
+		getVisasByKeywords(
+			long userId, String keywords, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.gwenod.visa.service.model.Visa>
+					orderByComparator) {
+
+		return _visaLocalService.getVisasByKeywords(
+			userId, keywords, start, end, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.service.model.Visa>
 		getVisasByUserId(long userId) {
 
 		return _visaLocalService.getVisasByUserId(userId);
@@ -448,16 +469,23 @@ public class VisaLocalServiceWrapper
 	}
 
 	@Override
+	public long getVisasCountByKeywords(long userId, String keywords) {
+		return _visaLocalService.getVisasCountByKeywords(userId, keywords);
+	}
+
+	@Override
 	public com.liferay.gwenod.visa.service.model.Visa updateVisa(
 			long visaId, String cin, String passport, String nom, String prenom,
 			java.util.Date dateNaissance, String motifVoyage,
-			java.util.Date dataVoyage, int dureeVoyage,
+			java.util.Date dataVoyage, int dureeVoyage, String etat,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.gwenod.visa.service.exception.NoSuchVisaException {
+		throws com.liferay.gwenod.visa.service.exception.NoSuchVisaException,
+			   com.liferay.gwenod.visa.service.exception.
+				   VisaValidationException {
 
 		return _visaLocalService.updateVisa(
 			visaId, cin, passport, nom, prenom, dateNaissance, motifVoyage,
-			dataVoyage, dureeVoyage, serviceContext);
+			dataVoyage, dureeVoyage, etat, serviceContext);
 	}
 
 	/**
