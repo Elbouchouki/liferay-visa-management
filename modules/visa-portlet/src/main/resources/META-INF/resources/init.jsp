@@ -11,7 +11,7 @@
 <%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 
-<%@ page import="com.liferay.gwenod.visa.service.model.VisaModel" %>
+<%@ page import="com.liferay.gwenod.visa.model.VisaModel" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 
 

@@ -18,6 +18,7 @@ public class VisaPortletKeys {
 
     public static class MVCPaths {
         public static final String ADD_VISA = "/visa/add.jsp";
+        public static final String EDIT_VISA = "/visa/edit.jsp";
         public static final String VIEW_VISA = "/visa/view.jsp";
         public static final String VIEW_VISAS = "/view.jsp";
 

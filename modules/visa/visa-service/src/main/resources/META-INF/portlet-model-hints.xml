@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.gwenod.visa.model.Visa">
+		<field name="uuid" type="String" />
+		<field name="visaId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+		<field name="cin" type="String" />
+		<field name="passport" type="String" />
+		<field name="nom" type="String" />
+		<field name="prenom" type="String" />
+		<field name="dateNaissance" type="Date" />
+		<field name="motifVoyage" type="String" />
+		<field name="dateVoyage" type="Date" />
+		<field name="dureeVoyage" type="int" />
+		<field name="etat" type="int" />
+	</model>
+</model-hints>

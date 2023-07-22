@@ -2,10 +2,12 @@
 
 <liferay-ui:error key="serviceErrorDetails">
     <liferay-ui:message arguments='<%= SessionErrors.get(request, "serviceErrorDetails") %>'
-                        key="error.assignment-service-error"/>
+                        key="error.visa-service-error"/>
 </liferay-ui:error>
 
 <liferay-ui:success key="visaAdded" message="visa.add.success"/>
+<liferay-ui:success key="visaDeleted" message="visa.delete.success"/>
+<liferay-ui:success key="visaEdited" message="visa.edit.success"/>
 
 
 <div class="container-fluid-1280">
@@ -26,7 +28,7 @@
         <liferay-ui:search-container-results results="${visas}"/>
 
         <liferay-ui:search-container-row
-                className="com.liferay.gwenod.visa.service.model.Visa"
+                className="com.liferay.gwenod.visa.model.Visa"
                 modelVar="visa">
 
             <liferay-ui:search-container-column-user
@@ -46,7 +48,7 @@
 
             <liferay-ui:search-container-column-text
                     name="status"
-                    value='<%= visa.getEtat()==null || visa.getEtat().equals("") ? "Not Defined" : visa.getEtat() %>'
+                    value='<%= visa.getEtat() == 0 ? "Pending" : visa.getEtat() == 1 ? "Accepted": "Refused" %>'
             />
 
             <liferay-ui:search-container-column-date

@@ -1,0 +1,11 @@
+dependencies {
+	compile project(":modules:visa:visa-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+}
+
+buildService {
+	apiDir = "../visa-api/src/main/java"
+}
+
+group = "com.liferay.gwenod.visa"

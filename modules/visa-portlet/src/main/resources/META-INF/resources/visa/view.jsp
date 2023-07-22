@@ -4,16 +4,28 @@
 
 <aui:fieldset>
 
-    <c:if test='${!visa.getEtat().equals("")}'>
-        <aui:fieldset label="visa.information.status">
-            <aui:row>
-                <aui:col span="3">
-                    <aui:input name="status" value="${visa.getEtat()}" label="visa.label.etat" type="text"
-                               readonly="true"/>
+    <aui:fieldset label="visa.information.status">
+        <aui:row>
+            <aui:col span="4">
+                <aui:input name="status"
+                           value='${visa.getEtat() == 0 ? "Pending" : visa.getEtat() == 1 ? "Accepted": "Refused"}'
+                           label="visa.label.etat" type="text"
+                           readonly="true"/>
+            </aui:col>
+            <c:if test="${modifiedBy != null}">
+                <aui:col span="4">
+                    <aui:input name="modifiedBy" value="${modifiedBy.getFullName()}" label="visa.label.modifiedBy"
+                               type="text" readonly="true"/>
                 </aui:col>
-            </aui:row>
-        </aui:fieldset>
-    </c:if>
+            </c:if>
+            <c:if test="${modifiedBy != null}">
+                <aui:col span="4">
+                    <aui:input name="modifiedDate" value="${visa.getModifiedDate()}" label="visa.label.modifiedDate"
+                               type="text" readonly="true"/>
+                </aui:col>
+            </c:if>
+        </aui:row>
+    </aui:fieldset>
 
     <aui:fieldset label="visa.information.personal">
         <aui:row>
@@ -38,14 +50,14 @@
         <aui:row>
             <aui:col>
                 <aui:input name="dateNaissance" value="${visa.getDateNaissance()}" label="visa.label.dateNaissance"
-                           type="date" readonly="true"/>
+                           type="text" readonly="true"/>
             </aui:col>
         </aui:row>
     </aui:fieldset>
     <aui:fieldset label="visa.information.traveling">
         <aui:row>
             <aui:col span="6">
-                <aui:input name="dateVoyage" value="${visa.getDateVoyage()}" label="visa.label.dateVoyage" type="date"
+                <aui:input name="dateVoyage" value="${visa.getDateVoyage()}" label="visa.label.dateVoyage" type="text"
                            readonly="true"/>
             </aui:col>
             <aui:col span="6">

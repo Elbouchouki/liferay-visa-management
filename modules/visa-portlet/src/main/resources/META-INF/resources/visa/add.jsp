@@ -68,6 +68,6 @@
     </aui:fieldset>
 
     <aui:button-row cssClass="cropper-center">
-        <aui:button type="submit" value="Add"/>
+        <aui:button type="submit" value="visa.add.submit"/>
     </aui:button-row>
 </aui:form>
