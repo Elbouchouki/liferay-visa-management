@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import java.util.List;
 
 /**
- * @author Elbouchouki ahmed
+ * @author Brian Wing Shun Chan
  */
 public class VisaValidationException extends PortalException {
     private List<String> _errors;
@@ -46,5 +46,4 @@ public class VisaValidationException extends PortalException {
     public VisaValidationException(Throwable throwable) {
         super(throwable);
     }
-
 }

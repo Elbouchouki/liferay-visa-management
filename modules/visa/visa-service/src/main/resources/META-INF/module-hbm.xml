@@ -3,7 +3,7 @@
 
 <hibernate-mapping auto-import="false" default-lazy="false">
 	<import class="com.liferay.gwenod.visa.model.Visa" />
-	<class name="com.liferay.gwenod.visa.model.impl.VisaImpl" table="_visa">
+	<class name="com.liferay.gwenod.visa.model.impl.VisaImpl" table="VisaManagement_Visa">
 		<id access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="visaId" type="long">
 			<generator class="assigned" />
 		</id>

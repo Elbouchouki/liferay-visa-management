@@ -1,4 +1,4 @@
-create table _visa (
+create table VisaManagement_Visa (
 	uuid_ VARCHAR(75) null,
 	visaId LONG not null primary key,
 	groupId LONG,

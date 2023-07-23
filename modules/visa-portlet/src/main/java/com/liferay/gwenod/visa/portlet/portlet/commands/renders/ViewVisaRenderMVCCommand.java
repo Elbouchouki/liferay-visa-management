@@ -2,7 +2,7 @@ package com.liferay.gwenod.visa.portlet.portlet.commands.renders;
 
 import com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys;
 import com.liferay.gwenod.visa.model.Visa;
-import com.liferay.gwenod.visa.service.VisaLocalService;
+import com.liferay.gwenod.visa.service.VisaService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -25,7 +25,7 @@ import javax.portlet.RenderResponse;
 )
 public class ViewVisaRenderMVCCommand implements MVCRenderCommand {
     @Reference
-    private VisaLocalService visaLocalService;
+    private VisaService visaService;
 
     @Override
     public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
@@ -33,7 +33,7 @@ public class ViewVisaRenderMVCCommand implements MVCRenderCommand {
         long visaId = ParamUtil.getLong(renderRequest, "visaId", 0);
 
         try {
-            Visa visa = visaLocalService.getVisa(visaId);
+            Visa visa = visaService.getVisa(visaId);
             if (visa.getModifiedBy() != 0) {
                 User modifiedBy = UserLocalServiceUtil.getUser(visa.getUserId());
                 renderRequest.setAttribute("modifiedBy", modifiedBy);

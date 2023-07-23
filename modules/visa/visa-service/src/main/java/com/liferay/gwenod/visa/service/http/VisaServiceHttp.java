@@ -14,13 +14,21 @@
 
 package com.liferay.gwenod.visa.service.http;
 
+import com.liferay.gwenod.visa.service.VisaServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.security.auth.HttpPrincipal;
+import com.liferay.portal.kernel.service.http.TunnelUtil;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
+
 /**
  * Provides the HTTP utility for the
- * <code>com.liferay.gwenod.visa.service.VisaServiceUtil</code> service
+ * <code>VisaServiceUtil</code> service
  * utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
- * <code>com.liferay.portal.kernel.security.auth.HttpPrincipal</code> parameter.
+ * <code>HttpPrincipal</code> parameter.
  *
  * <p>
  * The benefits of using the HTTP utility is that it is fast and allows for
@@ -41,4 +49,523 @@ package com.liferay.gwenod.visa.service.http;
  * @generated
  */
 public class VisaServiceHttp {
+
+	public static com.liferay.gwenod.visa.model.Visa addVisa(
+			HttpPrincipal httpPrincipal, String cin, String passport,
+			String nom, String prenom, java.util.Date dateNaissance,
+			String motifVoyage, java.util.Date dataVoyage, int dureeVoyage,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "addVisa", _addVisaParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, cin, passport, nom, prenom, dateNaissance,
+				motifVoyage, dataVoyage, dureeVoyage, serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.liferay.gwenod.visa.model.Visa)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static com.liferay.gwenod.visa.model.Visa updateVisa(
+			HttpPrincipal httpPrincipal, long visaId, String cin,
+			String passport, String nom, String prenom,
+			java.util.Date dateNaissance, String motifVoyage,
+			java.util.Date dataVoyage, int dureeVoyage, int etat,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "updateVisa",
+				_updateVisaParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, visaId, cin, passport, nom, prenom, dateNaissance,
+				motifVoyage, dataVoyage, dureeVoyage, etat, serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.liferay.gwenod.visa.model.Visa)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static com.liferay.gwenod.visa.model.Visa deleteVisa(
+			HttpPrincipal httpPrincipal, long visaId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "deleteVisa",
+				_deleteVisaParameterTypes2);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, visaId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.liferay.gwenod.visa.model.Visa)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static com.liferay.gwenod.visa.model.Visa getVisa(
+			HttpPrincipal httpPrincipal, long visaId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getVisa", _getVisaParameterTypes3);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, visaId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.liferay.gwenod.visa.model.Visa)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getAllVisas(HttpPrincipal httpPrincipal) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getAllVisas",
+				_getAllVisasParameterTypes4);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.liferay.gwenod.visa.model.Visa>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getAllVisas(HttpPrincipal httpPrincipal, int start, int end) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getAllVisas",
+				_getAllVisasParameterTypes5);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, start, end);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.liferay.gwenod.visa.model.Visa>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getAllVisas(
+			HttpPrincipal httpPrincipal, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getAllVisas",
+				_getAllVisasParameterTypes6);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, start, end, orderByComparator);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.liferay.gwenod.visa.model.Visa>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getVisasByUserId(HttpPrincipal httpPrincipal, long userId) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getVisasByUserId",
+				_getVisasByUserIdParameterTypes7);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, userId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.liferay.gwenod.visa.model.Visa>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getVisasByUserId(
+			HttpPrincipal httpPrincipal, long userId, int start, int end) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getVisasByUserId",
+				_getVisasByUserIdParameterTypes8);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, userId, start, end);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.liferay.gwenod.visa.model.Visa>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getVisasByUserId(
+			HttpPrincipal httpPrincipal, long userId, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getVisasByUserId",
+				_getVisasByUserIdParameterTypes9);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, userId, start, end, orderByComparator);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.liferay.gwenod.visa.model.Visa>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getVisasByKeywords(
+			HttpPrincipal httpPrincipal, long userId, String keywords,
+			int start, int end) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getVisasByKeywords",
+				_getVisasByKeywordsParameterTypes10);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, userId, keywords, start, end);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.liferay.gwenod.visa.model.Visa>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getVisasByKeywords(
+			HttpPrincipal httpPrincipal, long userId, String keywords,
+			int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getVisasByKeywords",
+				_getVisasByKeywordsParameterTypes11);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, userId, keywords, start, end, orderByComparator);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (java.util.List<com.liferay.gwenod.visa.model.Visa>)
+				returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static long getVisasCountByKeywords(
+		HttpPrincipal httpPrincipal, long userId, String keywords) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				VisaServiceUtil.class, "getVisasCountByKeywords",
+				_getVisasCountByKeywordsParameterTypes12);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, userId, keywords);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return ((Long)returnObj).longValue();
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(VisaServiceHttp.class);
+
+	private static final Class<?>[] _addVisaParameterTypes0 = new Class[] {
+		String.class, String.class, String.class, String.class,
+		java.util.Date.class, String.class, java.util.Date.class, int.class,
+		com.liferay.portal.kernel.service.ServiceContext.class
+	};
+	private static final Class<?>[] _updateVisaParameterTypes1 = new Class[] {
+		long.class, String.class, String.class, String.class, String.class,
+		java.util.Date.class, String.class, java.util.Date.class, int.class,
+		int.class, com.liferay.portal.kernel.service.ServiceContext.class
+	};
+	private static final Class<?>[] _deleteVisaParameterTypes2 = new Class[] {
+		long.class
+	};
+	private static final Class<?>[] _getVisaParameterTypes3 = new Class[] {
+		long.class
+	};
+	private static final Class<?>[] _getAllVisasParameterTypes4 =
+		new Class[] {};
+	private static final Class<?>[] _getAllVisasParameterTypes5 = new Class[] {
+		int.class, int.class
+	};
+	private static final Class<?>[] _getAllVisasParameterTypes6 = new Class[] {
+		int.class, int.class,
+		com.liferay.portal.kernel.util.OrderByComparator.class
+	};
+	private static final Class<?>[] _getVisasByUserIdParameterTypes7 =
+		new Class[] {long.class};
+	private static final Class<?>[] _getVisasByUserIdParameterTypes8 =
+		new Class[] {long.class, int.class, int.class};
+	private static final Class<?>[] _getVisasByUserIdParameterTypes9 =
+		new Class[] {
+			long.class, int.class, int.class,
+			com.liferay.portal.kernel.util.OrderByComparator.class
+		};
+	private static final Class<?>[] _getVisasByKeywordsParameterTypes10 =
+		new Class[] {long.class, String.class, int.class, int.class};
+	private static final Class<?>[] _getVisasByKeywordsParameterTypes11 =
+		new Class[] {
+			long.class, String.class, int.class, int.class,
+			com.liferay.portal.kernel.util.OrderByComparator.class
+		};
+	private static final Class<?>[] _getVisasCountByKeywordsParameterTypes12 =
+		new Class[] {long.class, String.class};
+
 }

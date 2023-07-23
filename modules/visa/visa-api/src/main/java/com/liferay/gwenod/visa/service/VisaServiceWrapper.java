@@ -34,6 +34,47 @@ public class VisaServiceWrapper
 		_visaService = visaService;
 	}
 
+	@Override
+	public com.liferay.gwenod.visa.model.Visa addVisa(
+			String cin, String passport, String nom, String prenom,
+			java.util.Date dateNaissance, String motifVoyage,
+			java.util.Date dataVoyage, int dureeVoyage,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _visaService.addVisa(
+			cin, passport, nom, prenom, dateNaissance, motifVoyage, dataVoyage,
+			dureeVoyage, serviceContext);
+	}
+
+	@Override
+	public com.liferay.gwenod.visa.model.Visa deleteVisa(long visaId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _visaService.deleteVisa(visaId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getAllVisas() {
+		return _visaService.getAllVisas();
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getAllVisas(
+		int start, int end) {
+
+		return _visaService.getAllVisas(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getAllVisas(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+
+		return _visaService.getAllVisas(start, end, orderByComparator);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -42,6 +83,73 @@ public class VisaServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _visaService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public com.liferay.gwenod.visa.model.Visa getVisa(long visaId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _visaService.getVisa(visaId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getVisasByKeywords(long userId, String keywords, int start, int end) {
+
+		return _visaService.getVisasByKeywords(userId, keywords, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa>
+		getVisasByKeywords(
+			long userId, String keywords, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+
+		return _visaService.getVisasByKeywords(
+			userId, keywords, start, end, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getVisasByUserId(
+		long userId) {
+
+		return _visaService.getVisasByUserId(userId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getVisasByUserId(
+		long userId, int start, int end) {
+
+		return _visaService.getVisasByUserId(userId, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getVisasByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+
+		return _visaService.getVisasByUserId(
+			userId, start, end, orderByComparator);
+	}
+
+	@Override
+	public long getVisasCountByKeywords(long userId, String keywords) {
+		return _visaService.getVisasCountByKeywords(userId, keywords);
+	}
+
+	@Override
+	public com.liferay.gwenod.visa.model.Visa updateVisa(
+			long visaId, String cin, String passport, String nom, String prenom,
+			java.util.Date dateNaissance, String motifVoyage,
+			java.util.Date dataVoyage, int dureeVoyage, int etat,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _visaService.updateVisa(
+			visaId, cin, passport, nom, prenom, dateNaissance, motifVoyage,
+			dataVoyage, dureeVoyage, etat, serviceContext);
 	}
 
 	@Override

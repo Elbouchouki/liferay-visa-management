@@ -3,7 +3,8 @@ package com.liferay.gwenod.visa.portlet.portlet.commands.renders;
 import com.liferay.gwenod.visa.portlet.portlet.context.VisaManagementToolbarDisplayContext;
 import com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys;
 import com.liferay.gwenod.visa.model.Visa;
-import com.liferay.gwenod.visa.service.VisaLocalService;
+import com.liferay.gwenod.visa.portlet.security.VisaPermission;
+import com.liferay.gwenod.visa.service.VisaService;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -34,12 +35,16 @@ public class ViewVisasRenderMVCCommand implements MVCRenderCommand {
     private Portal portal;
 
     @Reference
-    private VisaLocalService visaLocalService;
+    private VisaService visaService;
+//
+//    @Reference
+//    private VisaPermission visaPermission;
 
     @Override
     public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
         addManagementToolbarAttributes(renderRequest, renderResponse);
         addVisaListAttributes(renderRequest);
+//        renderRequest.setAttribute("visaPermission", visaPermission);
         return VisaPortletKeys.MVCPaths.VIEW_VISAS;
     }
 
@@ -63,11 +68,11 @@ public class ViewVisasRenderMVCCommand implements MVCRenderCommand {
 
         String keywords = ParamUtil.getString(renderRequest, "keywords");
 
-        List<Visa> visas = visaLocalService.getVisasByKeywords(
+        List<Visa> visas = visaService.getVisasByKeywords(
                 themeDisplay.getUserId(), keywords, start, end
         );
 
-        long visasCountByKeywords = visaLocalService.getVisasCountByKeywords(
+        long visasCountByKeywords = visaService.getVisasCountByKeywords(
                 themeDisplay.getUserId(), keywords
         );
 

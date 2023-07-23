@@ -14,6 +14,7 @@
 
 package com.liferay.gwenod.visa.service.impl;
 
+import com.liferay.gwenod.visa.exception.NoSuchVisaException;
 import com.liferay.gwenod.visa.exception.VisaValidationException;
 import com.liferay.gwenod.visa.model.Visa;
 import com.liferay.gwenod.visa.service.base.VisaLocalServiceBaseImpl;
@@ -24,6 +25,7 @@ import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -35,14 +37,13 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author Elbouchouki Ahmed
+ * @author Elbouchouki ahmed
  */
 @Component(
-        property = "model.class.name=com.liferay.gwenod.visa.service.model.Visa",
+        property = "model.class.name=com.liferay.gwenod.visa.model.Visa",
         service = AopService.class
 )
 public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
-
     @Reference
     private VisaValidator visaValidator;
 
@@ -51,7 +52,11 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
             String prenom, Date dateNaissance, String motifVoyage,
             Date dataVoyage, int dureeVoyage, ServiceContext serviceContext
     ) throws PortalException {
-        Visa visa = createVisa(counterLocalService.increment());
+        Visa visa = createVisa(
+                counterLocalService.increment(
+                        Visa.class.getName()
+                )
+        );
 
         visa.setUserId(serviceContext.getUserId());
         visa.setGroupId(serviceContext.getScopeGroupId());
@@ -63,7 +68,20 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
                 motifVoyage, dataVoyage, dureeVoyage, 0
         );
 
-        return visaPersistence.update(visa);
+        Visa addedVisa = super.addVisa(visa);
+
+        boolean portletActions = false;
+        boolean addGroupPermissions = true;
+        boolean addGuestPermissions = true;
+
+        resourceLocalService.addResources(
+                visa.getCompanyId(), visa.getGroupId(), visa.getUserId(),
+                Visa.class.getName(), visa.getVisaId(), portletActions,
+                addGroupPermissions, addGuestPermissions
+        );
+
+        return addedVisa;
+
     }
 
     public Visa updateVisa(
@@ -72,9 +90,9 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
             String prenom, Date dateNaissance, String motifVoyage,
             Date dataVoyage, int dureeVoyage, int etat,
             ServiceContext serviceContext
-    ) throws com.liferay.gwenod.visa.exception.NoSuchVisaException, VisaValidationException {
+    ) throws PortalException {
         Visa visa = this.getVisaById(visaId).orElseThrow(
-                () -> new com.liferay.gwenod.visa.exception.NoSuchVisaException("Visa with id " + visaId + " not found")
+                () -> new NoSuchVisaException("Visa with id " + visaId + " not found")
         );
 
         visa.setModifiedBy(serviceContext.getUserId());
@@ -85,21 +103,26 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
                 motifVoyage, dataVoyage, dureeVoyage, etat
         );
 
-        return visaPersistence.update(visa);
+        return super.updateVisa(visa);
     }
 
     public Visa deleteVisa(long visaId)
-            throws com.liferay.gwenod.visa.exception.NoSuchVisaException {
+            throws PortalException {
         Visa visa = this.getVisaById(visaId).orElseThrow(
                 () -> new com.liferay.gwenod.visa.exception.NoSuchVisaException("Visa with id " + visaId + " not found")
         );
+
+        resourceLocalService.deleteResource(
+                visa, ResourceConstants.SCOPE_INDIVIDUAL
+        );
+
         return visaPersistence.remove(visa);
     }
 
     public Visa getVisa(long visaId)
-            throws com.liferay.gwenod.visa.exception.NoSuchVisaException {
+            throws PortalException {
         return this.getVisaById(visaId).orElseThrow(
-                () -> new com.liferay.gwenod.visa.exception.NoSuchVisaException("Visa with id " + visaId + " not found")
+                () -> new NoSuchVisaException("Visa with id " + visaId + " not found")
         );
     }
 
@@ -113,7 +136,7 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
         return visaPersistence.findAll(start, end);
     }
 
-    public List<Visa> getAllVisas(int start, int end, com.liferay.portal.kernel.util.OrderByComparator<Visa> orderByComparator) {
+    public List<Visa> getAllVisas(int start, int end, OrderByComparator<Visa> orderByComparator) {
         return visaPersistence.findAll(start, end, orderByComparator);
     }
 
@@ -127,7 +150,7 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
         return visaPersistence.findByUserId(userId, start, end);
     }
 
-    public List<Visa> getVisasByUserId(long userId, int start, int end, com.liferay.portal.kernel.util.OrderByComparator<Visa> orderByComparator) {
+    public List<Visa> getVisasByUserId(long userId, int start, int end, OrderByComparator<Visa> orderByComparator) {
         return visaPersistence.findByUserId(userId, start, end, orderByComparator);
     }
 
@@ -207,4 +230,13 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
         visaValidator.validate(visa);
     }
 
+    @Override
+    public Visa addVisa(Visa visa) {
+        throw new UnsupportedOperationException("Not Supported Any More");
+    }
+
+    @Override
+    public Visa updateVisa(Visa visa) {
+        throw new UnsupportedOperationException("Not Supported Any More");
+    }
 }

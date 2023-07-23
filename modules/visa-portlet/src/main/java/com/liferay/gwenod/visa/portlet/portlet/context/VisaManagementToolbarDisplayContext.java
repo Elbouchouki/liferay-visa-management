@@ -3,18 +3,20 @@ package com.liferay.gwenod.visa.portlet.portlet.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.BaseManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys;
+import com.liferay.gwenod.visa.portlet.security.VisaTopLevelPermission;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.*;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.PortletURL;
 import javax.servlet.http.HttpServletRequest;
 
 public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDisplayContext {
-
-    private final PortalPreferences _portalPreferences;
+    @Reference
+    private VisaTopLevelPermission visaTopLevelPermission;
+    private final ThemeDisplay themeDisplay;
 
     public VisaManagementToolbarDisplayContext(
             LiferayPortletRequest liferayPortletRequest,
@@ -22,13 +24,49 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
             HttpServletRequest httpServletRequest
     ) {
         super(httpServletRequest, liferayPortletRequest, liferayPortletResponse);
-        _portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
-                liferayPortletRequest);
-
+        themeDisplay = (ThemeDisplay) httpServletRequest.getAttribute(
+                WebKeys.THEME_DISPLAY);
     }
 
     @Override
     public CreationMenu getCreationMenu() {
+
+        boolean addEntry = VisaTopLevelPermission.contains(
+                themeDisplay.getPermissionChecker(),
+                themeDisplay.getScopeGroupId(),
+                "ADD_ENTRY");
+
+        System.out.println("addEntry: " + addEntry);
+        boolean add = VisaTopLevelPermission.contains(
+                themeDisplay.getPermissionChecker(),
+                themeDisplay.getScopeGroupId(),
+                "ADD");
+        System.out.println("add: " + add);
+        boolean delete = VisaTopLevelPermission.contains(
+                themeDisplay.getPermissionChecker(),
+                themeDisplay.getScopeGroupId(),
+                "DELETE");
+        System.out.println("delete: " + delete);
+        boolean update = VisaTopLevelPermission.contains(
+                themeDisplay.getPermissionChecker(),
+                themeDisplay.getScopeGroupId(),
+                "UPDATE");
+        System.out.println("update: " + update);
+        boolean view = VisaTopLevelPermission.contains(
+                themeDisplay.getPermissionChecker(),
+                themeDisplay.getScopeGroupId(),
+                "VIEW");
+        System.out.println("view: " + view);
+
+
+        if (!VisaTopLevelPermission.contains(
+                themeDisplay.getPermissionChecker(),
+                themeDisplay.getScopeGroupId(),
+                "ADD_ENTRY")) {
+            System.out.println("Permission denied");
+            return null;
+        }
+
         return new CreationMenu() {
             {
                 addDropdownItem(
@@ -40,6 +78,7 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
                             dropdownItem.setLabel(
                                     LanguageUtil.get(httpServletRequest, "visa.add"));
                         });
+
             }
         };
     }
@@ -47,27 +86,6 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
     @Override
     public String getClearResultsURL() {
         return getSearchActionURL();
-    }
-
-    public String getDisplayStyle() {
-
-        String displayStyle = ParamUtil.getString(httpServletRequest, "displayStyle");
-
-        if (Validator.isNull(displayStyle)) {
-            displayStyle = _portalPreferences.getValue(
-                    VisaPortletKeys.VISA, "visa-display-style",
-                    "table");
-
-        } else {
-            _portalPreferences.setValue(
-                    VisaPortletKeys.VISA, "visa-display-style",
-                    displayStyle);
-
-            httpServletRequest.setAttribute(
-                    WebKeys.SINGLE_PAGE_APPLICATION_CLEAR_CACHE, Boolean.TRUE);
-        }
-
-        return displayStyle;
     }
 
     @Override

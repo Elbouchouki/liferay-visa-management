@@ -22,7 +22,7 @@ import java.sql.Types;
 import java.util.Date;
 
 /**
- * The table class for the &quot;_visa&quot; database table.
+ * The table class for the &quot;VisaManagement_Visa&quot; database table.
  *
  * @author Brian Wing Shun Chan
  * @see Visa
@@ -70,7 +70,7 @@ public class VisaTable extends BaseTable<VisaTable> {
 		"etat", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
 
 	private VisaTable() {
-		super("_visa", VisaTable::new);
+		super("VisaManagement_Visa", VisaTable::new);
 	}
 
 }

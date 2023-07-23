@@ -110,12 +110,8 @@ public class VisaLocalServiceUtil {
 	 * @param visaId the primary key of the visa
 	 * @return the visa that was removed
 	 * @throws PortalException if a visa with the primary key could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
-	public static Visa deleteVisa(long visaId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException {
-
+	public static Visa deleteVisa(long visaId) throws PortalException {
 		return getService().deleteVisa(visaId);
 	}
 
@@ -292,12 +288,8 @@ public class VisaLocalServiceUtil {
 	 * @param visaId the primary key of the visa
 	 * @return the visa
 	 * @throws PortalException if a visa with the primary key could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
-	public static Visa getVisa(long visaId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException {
-
+	public static Visa getVisa(long visaId) throws PortalException {
 		return getService().getVisa(visaId);
 	}
 
@@ -308,11 +300,9 @@ public class VisaLocalServiceUtil {
 	 * @param groupId the primary key of the group
 	 * @return the matching visa
 	 * @throws PortalException if a matching visa could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	public static Visa getVisaByUuidAndGroupId(String uuid, long groupId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException {
+		throws PortalException {
 
 		return getService().getVisaByUuidAndGroupId(uuid, groupId);
 	}
@@ -411,8 +401,7 @@ public class VisaLocalServiceUtil {
 			java.util.Date dateNaissance, String motifVoyage,
 			java.util.Date dataVoyage, int dureeVoyage, int etat,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   com.liferay.gwenod.visa.exception.VisaValidationException {
+		throws PortalException {
 
 		return getService().updateVisa(
 			visaId, cin, passport, nom, prenom, dateNaissance, motifVoyage,

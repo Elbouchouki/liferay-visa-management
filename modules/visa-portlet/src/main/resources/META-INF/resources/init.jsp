@@ -6,6 +6,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib prefix="clay" uri="http://liferay.com/tld/clay" %>
 <%@ taglib prefix="liferay-frontend" uri="http://liferay.com/tld/frontend" %>
+<%@ taglib prefix="liferay-security" uri="http://liferay.com/tld/security" %>
 
 <%@ page import="com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys" %>
 <%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>

@@ -2,7 +2,7 @@ package com.liferay.gwenod.visa.portlet.portlet.commands.actions;
 
 
 import com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys;
-import com.liferay.gwenod.visa.service.VisaLocalService;
+import com.liferay.gwenod.visa.service.VisaService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -25,7 +25,7 @@ import javax.portlet.ActionResponse;
 )
 public class DeleteVisaActionMVCCommand extends BaseMVCActionCommand {
     @Reference
-    private VisaLocalService visaLocalService;
+    private VisaService visaService;
 
     @Override
     protected void doProcessAction(
@@ -34,7 +34,7 @@ public class DeleteVisaActionMVCCommand extends BaseMVCActionCommand {
     ) throws Exception {
         long visaId = ParamUtil.getLong(actionRequest, "visaId");
         try {
-            visaLocalService.deleteVisa(visaId);
+            visaService.deleteVisa(visaId);
             SessionMessages.add(actionRequest, "visaDeleted");
         } catch (PortalException pe) {
             SessionErrors.add(actionRequest, "serviceErrorDetails", pe);

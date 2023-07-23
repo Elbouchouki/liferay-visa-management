@@ -15,7 +15,6 @@
 package com.liferay.gwenod.visa.service;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
-import com.liferay.gwenod.visa.exception.VisaValidationException;
 import com.liferay.gwenod.visa.model.Visa;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
@@ -117,12 +116,9 @@ public interface VisaLocalService
 	 * @param visaId the primary key of the visa
 	 * @return the visa that was removed
 	 * @throws PortalException if a visa with the primary key could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Visa deleteVisa(long visaId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException;
+	public Visa deleteVisa(long visaId) throws PortalException;
 
 	/**
 	 * Deletes the visa from the database. Also notifies the appropriate model listeners.
@@ -263,12 +259,9 @@ public interface VisaLocalService
 	 * @param visaId the primary key of the visa
 	 * @return the visa
 	 * @throws PortalException if a visa with the primary key could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Visa getVisa(long visaId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException;
+	public Visa getVisa(long visaId) throws PortalException;
 
 	/**
 	 * Returns the visa matching the UUID and group.
@@ -277,12 +270,10 @@ public interface VisaLocalService
 	 * @param groupId the primary key of the group
 	 * @return the matching visa
 	 * @throws PortalException if a matching visa could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Visa getVisaByUuidAndGroupId(String uuid, long groupId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException;
+		throws PortalException;
 
 	/**
 	 * Returns a range of all the visas.
@@ -358,8 +349,7 @@ public interface VisaLocalService
 			long visaId, String cin, String passport, String nom, String prenom,
 			Date dateNaissance, String motifVoyage, Date dataVoyage,
 			int dureeVoyage, int etat, ServiceContext serviceContext)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   VisaValidationException;
+		throws PortalException;
 
 	/**
 	 * Updates the visa in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

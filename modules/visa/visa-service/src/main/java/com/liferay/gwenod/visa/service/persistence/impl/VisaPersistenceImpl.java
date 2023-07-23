@@ -21,7 +21,7 @@ import com.liferay.gwenod.visa.model.impl.VisaImpl;
 import com.liferay.gwenod.visa.model.impl.VisaModelImpl;
 import com.liferay.gwenod.visa.service.persistence.VisaPersistence;
 import com.liferay.gwenod.visa.service.persistence.VisaUtil;
-import com.liferay.gwenod.visa.service.persistence.impl.constants.VisaPersistenceConstants;
+import com.liferay.gwenod.visa.service.persistence.impl.constants.VisaManagementPersistenceConstants;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
@@ -4172,7 +4172,7 @@ public class VisaPersistenceImpl
 
 	@Override
 	@Reference(
-		target = VisaPersistenceConstants.SERVICE_CONFIGURATION_FILTER,
+		target = VisaManagementPersistenceConstants.SERVICE_CONFIGURATION_FILTER,
 		unbind = "-"
 	)
 	public void setConfiguration(Configuration configuration) {
@@ -4180,7 +4180,7 @@ public class VisaPersistenceImpl
 
 	@Override
 	@Reference(
-		target = VisaPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
+		target = VisaManagementPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
 		unbind = "-"
 	)
 	public void setDataSource(DataSource dataSource) {
@@ -4189,7 +4189,7 @@ public class VisaPersistenceImpl
 
 	@Override
 	@Reference(
-		target = VisaPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
+		target = VisaManagementPersistenceConstants.ORIGIN_BUNDLE_SYMBOLIC_NAME_FILTER,
 		unbind = "-"
 	)
 	public void setSessionFactory(SessionFactory sessionFactory) {

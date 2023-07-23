@@ -6,7 +6,8 @@ Export-Package: \
     	com.liferay.gwenod.visa.model,\
     	com.liferay.gwenod.visa.service,\
     	com.liferay.gwenod.visa.service.persistence,\
-    com.liferay.gwenod.visa.validator
+    com.liferay.gwenod.visa.validator,\
+    com.liferay.gwenod.visa.constants
 
 -check: EXPORTS
 -includeresource: META-INF/service.xml=../visa-service/service.xml

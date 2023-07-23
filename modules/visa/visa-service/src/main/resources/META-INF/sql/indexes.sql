@@ -1,6 +1,6 @@
-create index IX_8C33BBD2 on _visa (cin[$COLUMN_LENGTH:75$]);
-create index IX_FE43A0FC on _visa (etat);
-create index IX_148FB3EC on _visa (passport[$COLUMN_LENGTH:75$]);
-create index IX_CBD24320 on _visa (userId);
-create index IX_EA6B855A on _visa (uuid_[$COLUMN_LENGTH:75$], companyId);
-create unique index IX_77E99A5C on _visa (uuid_[$COLUMN_LENGTH:75$], groupId);
+create index IX_5242FD36 on VisaManagement_Visa (cin[$COLUMN_LENGTH:75$]);
+create index IX_FA1C8C18 on VisaManagement_Visa (etat);
+create index IX_5585B108 on VisaManagement_Visa (passport[$COLUMN_LENGTH:75$]);
+create index IX_351CD73C on VisaManagement_Visa (userId);
+create index IX_3F90A676 on VisaManagement_Visa (uuid_[$COLUMN_LENGTH:75$], companyId);
+create unique index IX_BEDC5278 on VisaManagement_Visa (uuid_[$COLUMN_LENGTH:75$], groupId);

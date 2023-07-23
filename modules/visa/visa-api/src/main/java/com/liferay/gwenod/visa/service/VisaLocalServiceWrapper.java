@@ -107,12 +107,10 @@ public class VisaLocalServiceWrapper
 	 * @param visaId the primary key of the visa
 	 * @return the visa that was removed
 	 * @throws PortalException if a visa with the primary key could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Override
 	public com.liferay.gwenod.visa.model.Visa deleteVisa(long visaId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _visaLocalService.deleteVisa(visaId);
 	}
@@ -326,12 +324,10 @@ public class VisaLocalServiceWrapper
 	 * @param visaId the primary key of the visa
 	 * @return the visa
 	 * @throws PortalException if a visa with the primary key could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Override
 	public com.liferay.gwenod.visa.model.Visa getVisa(long visaId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _visaLocalService.getVisa(visaId);
 	}
@@ -343,13 +339,11 @@ public class VisaLocalServiceWrapper
 	 * @param groupId the primary key of the group
 	 * @return the matching visa
 	 * @throws PortalException if a matching visa could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Override
 	public com.liferay.gwenod.visa.model.Visa getVisaByUuidAndGroupId(
 			String uuid, long groupId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _visaLocalService.getVisaByUuidAndGroupId(uuid, groupId);
 	}
@@ -471,8 +465,7 @@ public class VisaLocalServiceWrapper
 			java.util.Date dateNaissance, String motifVoyage,
 			java.util.Date dataVoyage, int dureeVoyage, int etat,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   com.liferay.gwenod.visa.exception.VisaValidationException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _visaLocalService.updateVisa(
 			visaId, cin, passport, nom, prenom, dateNaissance, motifVoyage,

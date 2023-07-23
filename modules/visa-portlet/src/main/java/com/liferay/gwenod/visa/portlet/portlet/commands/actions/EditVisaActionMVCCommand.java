@@ -3,7 +3,7 @@ package com.liferay.gwenod.visa.portlet.portlet.commands.actions;
 import com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys;
 import com.liferay.gwenod.visa.exception.VisaValidationException;
 import com.liferay.gwenod.visa.model.Visa;
-import com.liferay.gwenod.visa.service.VisaLocalService;
+import com.liferay.gwenod.visa.service.VisaService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -30,7 +30,7 @@ import java.util.Date;
 public class EditVisaActionMVCCommand extends BaseMVCActionCommand {
 
     @Reference
-    private VisaLocalService visaLocalService;
+    private VisaService visaService;
 
 
     @Override
@@ -55,7 +55,7 @@ public class EditVisaActionMVCCommand extends BaseMVCActionCommand {
         );
 
         try {
-            visaLocalService.updateVisa(
+            visaService.updateVisa(
                     visaId,
                     cin,
                     passport,

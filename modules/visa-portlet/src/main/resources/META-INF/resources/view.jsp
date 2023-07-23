@@ -17,6 +17,10 @@
 
     <clay:management-toolbar
             displayContext="${visaManagementToolbarDisplayContext}"
+            selectable="false"
+            itemsTotal="${visasCount}"
+            searchContainerId="visaSearchContainer"
+
     />
 
     <liferay-ui:search-container
@@ -24,6 +28,7 @@
             emptyResultsMessage="visa.empty"
             iteratorURL="${portletURL}"
             total="${visasCount}"
+
     >
         <liferay-ui:search-container-results results="${visas}"/>
 
@@ -66,7 +71,6 @@
 
 
         <liferay-ui:search-iterator
-                displayStyle="${visaManagementToolbarDisplayContext.getDisplayStyle()}"
                 markupView="lexicon"
         />
 

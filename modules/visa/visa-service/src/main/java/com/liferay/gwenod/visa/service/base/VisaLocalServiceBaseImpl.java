@@ -123,14 +123,10 @@ public abstract class VisaLocalServiceBaseImpl
 	 * @param visaId the primary key of the visa
 	 * @return the visa that was removed
 	 * @throws PortalException if a visa with the primary key could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Visa deleteVisa(long visaId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException {
-
+	public Visa deleteVisa(long visaId) throws PortalException {
 		return visaPersistence.remove(visaId);
 	}
 
@@ -270,13 +266,9 @@ public abstract class VisaLocalServiceBaseImpl
 	 * @param visaId the primary key of the visa
 	 * @return the visa
 	 * @throws PortalException if a visa with the primary key could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Override
-	public Visa getVisa(long visaId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException {
-
+	public Visa getVisa(long visaId) throws PortalException {
 		return visaPersistence.findByPrimaryKey(visaId);
 	}
 
@@ -462,12 +454,10 @@ public abstract class VisaLocalServiceBaseImpl
 	 * @param groupId the primary key of the group
 	 * @return the matching visa
 	 * @throws PortalException if a matching visa could not be found
-	 * @throws com.liferay.gwenod.visa.exception.NoSuchVisaException
 	 */
 	@Override
 	public Visa getVisaByUuidAndGroupId(String uuid, long groupId)
-		throws com.liferay.gwenod.visa.exception.NoSuchVisaException,
-			   PortalException {
+		throws PortalException {
 
 		return visaPersistence.findByUUID_G(uuid, groupId);
 	}
@@ -606,6 +596,10 @@ public abstract class VisaLocalServiceBaseImpl
 		classNameLocalService;
 
 	@Reference
+	protected com.liferay.portal.kernel.service.GroupLocalService
+		groupLocalService;
+
+	@Reference
 	protected com.liferay.portal.kernel.service.ResourceLocalService
 		resourceLocalService;
 
@@ -616,6 +610,10 @@ public abstract class VisaLocalServiceBaseImpl
 	@Reference
 	protected com.liferay.asset.kernel.service.AssetEntryLocalService
 		assetEntryLocalService;
+
+	@Reference
+	protected com.liferay.asset.kernel.service.AssetLinkLocalService
+		assetLinkLocalService;
 
 	@Reference
 	protected com.liferay.asset.kernel.service.AssetTagLocalService

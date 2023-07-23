@@ -2,7 +2,7 @@ package com.liferay.gwenod.visa.portlet.portlet.commands.renders;
 
 import com.liferay.gwenod.visa.portlet.constants.VisaPortletKeys;
 import com.liferay.gwenod.visa.model.Visa;
-import com.liferay.gwenod.visa.service.VisaLocalService;
+import com.liferay.gwenod.visa.service.VisaService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
@@ -25,7 +25,7 @@ import java.text.DateFormat;
 )
 public class EditVisaRenderMVCCommand implements MVCRenderCommand {
     @Reference
-    private VisaLocalService visaLocalService;
+    private VisaService visaService;
 
     @Override
     public String render(
@@ -36,7 +36,7 @@ public class EditVisaRenderMVCCommand implements MVCRenderCommand {
         long visaId = ParamUtil.getLong(renderRequest, "visaId", 0);
 
         try {
-            Visa visa = visaLocalService.getVisa(visaId);
+            Visa visa = visaService.getVisa(visaId);
             DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
                     "EEE MMM dd HH:mm:ss z yyyy"
             );
