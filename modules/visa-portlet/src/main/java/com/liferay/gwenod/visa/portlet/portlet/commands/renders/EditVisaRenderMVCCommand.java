@@ -5,6 +5,8 @@ import com.liferay.gwenod.visa.model.Visa;
 import com.liferay.gwenod.visa.service.VisaService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import org.osgi.service.component.annotations.Component;
@@ -36,7 +38,11 @@ public class EditVisaRenderMVCCommand implements MVCRenderCommand {
         long visaId = ParamUtil.getLong(renderRequest, "visaId", 0);
 
         try {
-            Visa visa = visaService.getVisa(visaId);
+            ServiceContext serviceContext = ServiceContextFactory.getInstance(
+                    Visa.class.getName(), renderRequest
+            );
+
+            Visa visa = visaService.getVisa(visaId, serviceContext);
             DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
                     "EEE MMM dd HH:mm:ss z yyyy"
             );

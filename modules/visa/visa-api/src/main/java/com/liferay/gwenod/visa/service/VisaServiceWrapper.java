@@ -48,31 +48,41 @@ public class VisaServiceWrapper
 	}
 
 	@Override
-	public com.liferay.gwenod.visa.model.Visa deleteVisa(long visaId)
+	public com.liferay.gwenod.visa.model.Visa deleteVisa(
+			long visaId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _visaService.deleteVisa(visaId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.gwenod.visa.model.Visa> getAllVisas() {
-		return _visaService.getAllVisas();
+		return _visaService.deleteVisa(visaId, serviceContext);
 	}
 
 	@Override
 	public java.util.List<com.liferay.gwenod.visa.model.Visa> getAllVisas(
-		int start, int end) {
+			int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.gwenod.visa.model.Visa> orderByComparator,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
-		return _visaService.getAllVisas(start, end);
+		return _visaService.getAllVisas(
+			start, end, orderByComparator, serviceContext);
 	}
 
 	@Override
 	public java.util.List<com.liferay.gwenod.visa.model.Visa> getAllVisas(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+			int start, int end,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
-		return _visaService.getAllVisas(start, end, orderByComparator);
+		return _visaService.getAllVisas(start, end, serviceContext);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getAllVisas(
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return _visaService.getAllVisas(serviceContext);
 	}
 
 	/**
@@ -86,57 +96,77 @@ public class VisaServiceWrapper
 	}
 
 	@Override
-	public com.liferay.gwenod.visa.model.Visa getVisa(long visaId)
+	public com.liferay.gwenod.visa.model.Visa getVisa(
+			long visaId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _visaService.getVisa(visaId);
+		return _visaService.getVisa(visaId, serviceContext);
 	}
 
 	@Override
 	public java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getVisasByKeywords(long userId, String keywords, int start, int end) {
-
-		return _visaService.getVisasByKeywords(userId, keywords, start, end);
-	}
-
-	@Override
-	public java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getVisasByKeywords(
-			long userId, String keywords, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+			getVisasByKeywords(
+				long userId, String keywords, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.gwenod.visa.model.Visa> orderByComparator,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		return _visaService.getVisasByKeywords(
-			userId, keywords, start, end, orderByComparator);
+			userId, keywords, start, end, orderByComparator, serviceContext);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa>
+			getVisasByKeywords(
+				long userId, String keywords, int start, int end,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return _visaService.getVisasByKeywords(
+			userId, keywords, start, end, serviceContext);
 	}
 
 	@Override
 	public java.util.List<com.liferay.gwenod.visa.model.Visa> getVisasByUserId(
-		long userId) {
-
-		return _visaService.getVisasByUserId(userId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.gwenod.visa.model.Visa> getVisasByUserId(
-		long userId, int start, int end) {
-
-		return _visaService.getVisasByUserId(userId, start, end);
-	}
-
-	@Override
-	public java.util.List<com.liferay.gwenod.visa.model.Visa> getVisasByUserId(
-		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator
-			<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+			long userId, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.gwenod.visa.model.Visa> orderByComparator,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		return _visaService.getVisasByUserId(
-			userId, start, end, orderByComparator);
+			userId, start, end, orderByComparator, serviceContext);
 	}
 
 	@Override
-	public long getVisasCountByKeywords(long userId, String keywords) {
-		return _visaService.getVisasCountByKeywords(userId, keywords);
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getVisasByUserId(
+			long userId, int start, int end,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return _visaService.getVisasByUserId(
+			userId, start, end, serviceContext);
+	}
+
+	@Override
+	public java.util.List<com.liferay.gwenod.visa.model.Visa> getVisasByUserId(
+			long userId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return _visaService.getVisasByUserId(userId, serviceContext);
+	}
+
+	@Override
+	public long getVisasCountByKeywords(
+			long userId, String keywords,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return _visaService.getVisasCountByKeywords(
+			userId, keywords, serviceContext);
 	}
 
 	@Override

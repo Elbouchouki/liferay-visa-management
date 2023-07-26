@@ -82,7 +82,7 @@ public class EditVisaActionMVCCommand extends BaseMVCActionCommand {
             actionResponse.getRenderParameters().setValue(
                     "mvcRenderCommandName", VisaPortletKeys.MVCCommandNames.EDIT_VISA);
 
-        } catch (PortalException pe) {
+        } catch (Exception pe) {
 
             pe.printStackTrace();
 

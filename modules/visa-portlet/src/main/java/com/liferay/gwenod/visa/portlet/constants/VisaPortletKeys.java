@@ -21,7 +21,7 @@ public class VisaPortletKeys {
         public static final String EDIT_VISA = "/visa/edit.jsp";
         public static final String VIEW_VISA = "/visa/view.jsp";
         public static final String VIEW_VISAS = "/view.jsp";
-
+        public static final String ERROR = "/error_view.jsp";
     }
 
 }

@@ -1,4 +1,12 @@
-<%@ include file="/init.jsp" %>
+<%@ include file="init.jsp" %>
+
+
+<%
+    VisaManagementToolbarDisplayContext visaManagementToolbarDisplayContext =
+            (VisaManagementToolbarDisplayContext) request.getAttribute("visaManagementToolbarDisplayContext");
+    Integer visasCount = (Integer) request.getAttribute("visasCount");
+    List<Visa> visas = (List<Visa>) request.getAttribute("visas");
+%>
 
 <liferay-ui:error key="serviceErrorDetails">
     <liferay-ui:message arguments='<%= SessionErrors.get(request, "serviceErrorDetails") %>'
@@ -16,9 +24,9 @@
 
 
     <clay:management-toolbar
-            displayContext="${visaManagementToolbarDisplayContext}"
+            displayContext="<%= visaManagementToolbarDisplayContext %>"
             selectable="false"
-            itemsTotal="${visasCount}"
+            itemsTotal="<%= visasCount %>"
             searchContainerId="visaSearchContainer"
 
     />
@@ -26,11 +34,10 @@
     <liferay-ui:search-container
             id="visaSearchContainer"
             emptyResultsMessage="visa.empty"
-            iteratorURL="${portletURL}"
-            total="${visasCount}"
+            total="<%= visasCount %>"
 
     >
-        <liferay-ui:search-container-results results="${visas}"/>
+        <liferay-ui:search-container-results results="<%= visas %>"/>
 
         <liferay-ui:search-container-row
                 className="com.liferay.gwenod.visa.model.Visa"

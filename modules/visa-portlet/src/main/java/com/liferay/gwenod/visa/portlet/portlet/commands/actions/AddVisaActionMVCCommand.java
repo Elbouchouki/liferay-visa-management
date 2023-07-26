@@ -78,7 +78,7 @@ public class AddVisaActionMVCCommand extends BaseMVCActionCommand {
             actionResponse.getRenderParameters().setValue(
                     "mvcRenderCommandName", VisaPortletKeys.MVCCommandNames.ADD_VISA);
 
-        } catch (PortalException pe) {
+        } catch (Exception pe) {
 
             pe.printStackTrace();
 

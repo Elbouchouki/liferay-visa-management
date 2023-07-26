@@ -139,7 +139,8 @@ public class VisaServiceHttp {
 	}
 
 	public static com.liferay.gwenod.visa.model.Visa deleteVisa(
-			HttpPrincipal httpPrincipal, long visaId)
+			HttpPrincipal httpPrincipal, long visaId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -147,7 +148,8 @@ public class VisaServiceHttp {
 				VisaServiceUtil.class, "deleteVisa",
 				_deleteVisaParameterTypes2);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, visaId);
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, visaId, serviceContext);
 
 			Object returnObj = null;
 
@@ -178,14 +180,16 @@ public class VisaServiceHttp {
 	}
 
 	public static com.liferay.gwenod.visa.model.Visa getVisa(
-			HttpPrincipal httpPrincipal, long visaId)
+			HttpPrincipal httpPrincipal, long visaId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				VisaServiceUtil.class, "getVisa", _getVisaParameterTypes3);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, visaId);
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, visaId, serviceContext);
 
 			Object returnObj = null;
 
@@ -216,14 +220,18 @@ public class VisaServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getAllVisas(HttpPrincipal httpPrincipal) {
+			getAllVisas(
+				HttpPrincipal httpPrincipal,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				VisaServiceUtil.class, "getAllVisas",
 				_getAllVisasParameterTypes4);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey);
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, serviceContext);
 
 			Object returnObj = null;
 
@@ -231,6 +239,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -248,7 +264,10 @@ public class VisaServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getAllVisas(HttpPrincipal httpPrincipal, int start, int end) {
+			getAllVisas(
+				HttpPrincipal httpPrincipal, int start, int end,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -256,7 +275,7 @@ public class VisaServiceHttp {
 				_getAllVisasParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, start, end);
+				methodKey, start, end, serviceContext);
 
 			Object returnObj = null;
 
@@ -264,6 +283,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -281,10 +308,12 @@ public class VisaServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getAllVisas(
-			HttpPrincipal httpPrincipal, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+			getAllVisas(
+				HttpPrincipal httpPrincipal, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.gwenod.visa.model.Visa> orderByComparator,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -292,7 +321,7 @@ public class VisaServiceHttp {
 				_getAllVisasParameterTypes6);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, start, end, orderByComparator);
+				methodKey, start, end, orderByComparator, serviceContext);
 
 			Object returnObj = null;
 
@@ -300,6 +329,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -317,14 +354,18 @@ public class VisaServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getVisasByUserId(HttpPrincipal httpPrincipal, long userId) {
+			getVisasByUserId(
+				HttpPrincipal httpPrincipal, long userId,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				VisaServiceUtil.class, "getVisasByUserId",
 				_getVisasByUserIdParameterTypes7);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, userId);
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, userId, serviceContext);
 
 			Object returnObj = null;
 
@@ -332,6 +373,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -349,8 +398,10 @@ public class VisaServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getVisasByUserId(
-			HttpPrincipal httpPrincipal, long userId, int start, int end) {
+			getVisasByUserId(
+				HttpPrincipal httpPrincipal, long userId, int start, int end,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -358,7 +409,7 @@ public class VisaServiceHttp {
 				_getVisasByUserIdParameterTypes8);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, userId, start, end);
+				methodKey, userId, start, end, serviceContext);
 
 			Object returnObj = null;
 
@@ -366,6 +417,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -383,10 +442,12 @@ public class VisaServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getVisasByUserId(
-			HttpPrincipal httpPrincipal, long userId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+			getVisasByUserId(
+				HttpPrincipal httpPrincipal, long userId, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.gwenod.visa.model.Visa> orderByComparator,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -394,7 +455,8 @@ public class VisaServiceHttp {
 				_getVisasByUserIdParameterTypes9);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, userId, start, end, orderByComparator);
+				methodKey, userId, start, end, orderByComparator,
+				serviceContext);
 
 			Object returnObj = null;
 
@@ -402,6 +464,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -419,9 +489,11 @@ public class VisaServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getVisasByKeywords(
-			HttpPrincipal httpPrincipal, long userId, String keywords,
-			int start, int end) {
+			getVisasByKeywords(
+				HttpPrincipal httpPrincipal, long userId, String keywords,
+				int start, int end,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -429,7 +501,7 @@ public class VisaServiceHttp {
 				_getVisasByKeywordsParameterTypes10);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, userId, keywords, start, end);
+				methodKey, userId, keywords, start, end, serviceContext);
 
 			Object returnObj = null;
 
@@ -437,6 +509,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -454,11 +534,13 @@ public class VisaServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.gwenod.visa.model.Visa>
-		getVisasByKeywords(
-			HttpPrincipal httpPrincipal, long userId, String keywords,
-			int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.gwenod.visa.model.Visa> orderByComparator) {
+			getVisasByKeywords(
+				HttpPrincipal httpPrincipal, long userId, String keywords,
+				int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.gwenod.visa.model.Visa> orderByComparator,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -466,7 +548,8 @@ public class VisaServiceHttp {
 				_getVisasByKeywordsParameterTypes11);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, userId, keywords, start, end, orderByComparator);
+				methodKey, userId, keywords, start, end, orderByComparator,
+				serviceContext);
 
 			Object returnObj = null;
 
@@ -474,6 +557,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -491,7 +582,9 @@ public class VisaServiceHttp {
 	}
 
 	public static long getVisasCountByKeywords(
-		HttpPrincipal httpPrincipal, long userId, String keywords) {
+			HttpPrincipal httpPrincipal, long userId, String keywords,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -499,7 +592,7 @@ public class VisaServiceHttp {
 				_getVisasCountByKeywordsParameterTypes12);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, userId, keywords);
+				methodKey, userId, keywords, serviceContext);
 
 			Object returnObj = null;
 
@@ -507,6 +600,14 @@ public class VisaServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.security.auth.
+							PrincipalException) {
+
+					throw (com.liferay.portal.kernel.security.auth.
+						PrincipalException)exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					exception);
 			}
@@ -535,37 +636,53 @@ public class VisaServiceHttp {
 		int.class, com.liferay.portal.kernel.service.ServiceContext.class
 	};
 	private static final Class<?>[] _deleteVisaParameterTypes2 = new Class[] {
-		long.class
+		long.class, com.liferay.portal.kernel.service.ServiceContext.class
 	};
 	private static final Class<?>[] _getVisaParameterTypes3 = new Class[] {
-		long.class
+		long.class, com.liferay.portal.kernel.service.ServiceContext.class
 	};
-	private static final Class<?>[] _getAllVisasParameterTypes4 =
-		new Class[] {};
+	private static final Class<?>[] _getAllVisasParameterTypes4 = new Class[] {
+		com.liferay.portal.kernel.service.ServiceContext.class
+	};
 	private static final Class<?>[] _getAllVisasParameterTypes5 = new Class[] {
-		int.class, int.class
+		int.class, int.class,
+		com.liferay.portal.kernel.service.ServiceContext.class
 	};
 	private static final Class<?>[] _getAllVisasParameterTypes6 = new Class[] {
 		int.class, int.class,
-		com.liferay.portal.kernel.util.OrderByComparator.class
+		com.liferay.portal.kernel.util.OrderByComparator.class,
+		com.liferay.portal.kernel.service.ServiceContext.class
 	};
 	private static final Class<?>[] _getVisasByUserIdParameterTypes7 =
-		new Class[] {long.class};
+		new Class[] {
+			long.class, com.liferay.portal.kernel.service.ServiceContext.class
+		};
 	private static final Class<?>[] _getVisasByUserIdParameterTypes8 =
-		new Class[] {long.class, int.class, int.class};
+		new Class[] {
+			long.class, int.class, int.class,
+			com.liferay.portal.kernel.service.ServiceContext.class
+		};
 	private static final Class<?>[] _getVisasByUserIdParameterTypes9 =
 		new Class[] {
 			long.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class
+			com.liferay.portal.kernel.util.OrderByComparator.class,
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _getVisasByKeywordsParameterTypes10 =
-		new Class[] {long.class, String.class, int.class, int.class};
+		new Class[] {
+			long.class, String.class, int.class, int.class,
+			com.liferay.portal.kernel.service.ServiceContext.class
+		};
 	private static final Class<?>[] _getVisasByKeywordsParameterTypes11 =
 		new Class[] {
 			long.class, String.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class
+			com.liferay.portal.kernel.util.OrderByComparator.class,
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _getVisasCountByKeywordsParameterTypes12 =
-		new Class[] {long.class, String.class};
+		new Class[] {
+			long.class, String.class,
+			com.liferay.portal.kernel.service.ServiceContext.class
+		};
 
 }

@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ResourceConstants;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -106,6 +108,7 @@ public class VisaLocalServiceImpl extends VisaLocalServiceBaseImpl {
         return super.updateVisa(visa);
     }
 
+    @Indexable(type = IndexableType.DELETE)
     public Visa deleteVisa(long visaId)
             throws PortalException {
         Visa visa = this.getVisaById(visaId).orElseThrow(

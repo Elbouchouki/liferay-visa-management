@@ -51,22 +51,36 @@ public class VisaServiceUtil {
 			dureeVoyage, serviceContext);
 	}
 
-	public static Visa deleteVisa(long visaId) throws PortalException {
-		return getService().deleteVisa(visaId);
-	}
+	public static Visa deleteVisa(
+			long visaId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
 
-	public static List<Visa> getAllVisas() {
-		return getService().getAllVisas();
-	}
-
-	public static List<Visa> getAllVisas(int start, int end) {
-		return getService().getAllVisas(start, end);
+		return getService().deleteVisa(visaId, serviceContext);
 	}
 
 	public static List<Visa> getAllVisas(
-		int start, int end, OrderByComparator<Visa> orderByComparator) {
+			int start, int end, OrderByComparator<Visa> orderByComparator,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
-		return getService().getAllVisas(start, end, orderByComparator);
+		return getService().getAllVisas(
+			start, end, orderByComparator, serviceContext);
+	}
+
+	public static List<Visa> getAllVisas(
+			int start, int end,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return getService().getAllVisas(start, end, serviceContext);
+	}
+
+	public static List<Visa> getAllVisas(
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return getService().getAllVisas(serviceContext);
 	}
 
 	/**
@@ -78,42 +92,67 @@ public class VisaServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static Visa getVisa(long visaId) throws PortalException {
-		return getService().getVisa(visaId);
+	public static Visa getVisa(
+			long visaId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().getVisa(visaId, serviceContext);
 	}
 
 	public static List<Visa> getVisasByKeywords(
-		long userId, String keywords, int start, int end) {
-
-		return getService().getVisasByKeywords(userId, keywords, start, end);
-	}
-
-	public static List<Visa> getVisasByKeywords(
-		long userId, String keywords, int start, int end,
-		OrderByComparator<Visa> orderByComparator) {
+			long userId, String keywords, int start, int end,
+			OrderByComparator<Visa> orderByComparator,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		return getService().getVisasByKeywords(
-			userId, keywords, start, end, orderByComparator);
+			userId, keywords, start, end, orderByComparator, serviceContext);
 	}
 
-	public static List<Visa> getVisasByUserId(long userId) {
-		return getService().getVisasByUserId(userId);
-	}
+	public static List<Visa> getVisasByKeywords(
+			long userId, String keywords, int start, int end,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
-	public static List<Visa> getVisasByUserId(long userId, int start, int end) {
-		return getService().getVisasByUserId(userId, start, end);
+		return getService().getVisasByKeywords(
+			userId, keywords, start, end, serviceContext);
 	}
 
 	public static List<Visa> getVisasByUserId(
-		long userId, int start, int end,
-		OrderByComparator<Visa> orderByComparator) {
+			long userId, int start, int end,
+			OrderByComparator<Visa> orderByComparator,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		return getService().getVisasByUserId(
-			userId, start, end, orderByComparator);
+			userId, start, end, orderByComparator, serviceContext);
 	}
 
-	public static long getVisasCountByKeywords(long userId, String keywords) {
-		return getService().getVisasCountByKeywords(userId, keywords);
+	public static List<Visa> getVisasByUserId(
+			long userId, int start, int end,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return getService().getVisasByUserId(
+			userId, start, end, serviceContext);
+	}
+
+	public static List<Visa> getVisasByUserId(
+			long userId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return getService().getVisasByUserId(userId, serviceContext);
+	}
+
+	public static long getVisasCountByKeywords(
+			long userId, String keywords,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return getService().getVisasCountByKeywords(
+			userId, keywords, serviceContext);
 	}
 
 	public static Visa updateVisa(

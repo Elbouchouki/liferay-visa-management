@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
@@ -60,17 +61,23 @@ public interface VisaService extends BaseService {
 			int dureeVoyage, ServiceContext serviceContext)
 		throws PortalException;
 
-	public Visa deleteVisa(long visaId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Visa> getAllVisas();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Visa> getAllVisas(int start, int end);
+	public Visa deleteVisa(long visaId, ServiceContext serviceContext)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Visa> getAllVisas(
-		int start, int end, OrderByComparator<Visa> orderByComparator);
+			int start, int end, OrderByComparator<Visa> orderByComparator,
+			ServiceContext serviceContext)
+		throws PrincipalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Visa> getAllVisas(
+			int start, int end, ServiceContext serviceContext)
+		throws PrincipalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Visa> getAllVisas(ServiceContext serviceContext)
+		throws PrincipalException;
 
 	/**
 	 * Returns the OSGi service identifier.
@@ -80,30 +87,43 @@ public interface VisaService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Visa getVisa(long visaId) throws PortalException;
+	public Visa getVisa(long visaId, ServiceContext serviceContext)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Visa> getVisasByKeywords(
-		long userId, String keywords, int start, int end);
+			long userId, String keywords, int start, int end,
+			OrderByComparator<Visa> orderByComparator,
+			ServiceContext serviceContext)
+		throws PrincipalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Visa> getVisasByKeywords(
-		long userId, String keywords, int start, int end,
-		OrderByComparator<Visa> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Visa> getVisasByUserId(long userId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Visa> getVisasByUserId(long userId, int start, int end);
+			long userId, String keywords, int start, int end,
+			ServiceContext serviceContext)
+		throws PrincipalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Visa> getVisasByUserId(
-		long userId, int start, int end,
-		OrderByComparator<Visa> orderByComparator);
+			long userId, int start, int end,
+			OrderByComparator<Visa> orderByComparator,
+			ServiceContext serviceContext)
+		throws PrincipalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getVisasCountByKeywords(long userId, String keywords);
+	public List<Visa> getVisasByUserId(
+			long userId, int start, int end, ServiceContext serviceContext)
+		throws PrincipalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Visa> getVisasByUserId(
+			long userId, ServiceContext serviceContext)
+		throws PrincipalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getVisasCountByKeywords(
+			long userId, String keywords, ServiceContext serviceContext)
+		throws PrincipalException;
 
 	public Visa updateVisa(
 			long visaId, String cin, String passport, String nom, String prenom,

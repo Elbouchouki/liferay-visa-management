@@ -8,14 +8,11 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.*;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
-import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.PortletURL;
 import javax.servlet.http.HttpServletRequest;
 
 public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDisplayContext {
-    @Reference
-    private VisaTopLevelPermission visaTopLevelPermission;
     private final ThemeDisplay themeDisplay;
 
     public VisaManagementToolbarDisplayContext(
@@ -31,39 +28,10 @@ public class VisaManagementToolbarDisplayContext extends BaseManagementToolbarDi
     @Override
     public CreationMenu getCreationMenu() {
 
-        boolean addEntry = VisaTopLevelPermission.contains(
-                themeDisplay.getPermissionChecker(),
-                themeDisplay.getScopeGroupId(),
-                "ADD_ENTRY");
-
-        System.out.println("addEntry: " + addEntry);
-        boolean add = VisaTopLevelPermission.contains(
-                themeDisplay.getPermissionChecker(),
-                themeDisplay.getScopeGroupId(),
-                "ADD");
-        System.out.println("add: " + add);
-        boolean delete = VisaTopLevelPermission.contains(
-                themeDisplay.getPermissionChecker(),
-                themeDisplay.getScopeGroupId(),
-                "DELETE");
-        System.out.println("delete: " + delete);
-        boolean update = VisaTopLevelPermission.contains(
-                themeDisplay.getPermissionChecker(),
-                themeDisplay.getScopeGroupId(),
-                "UPDATE");
-        System.out.println("update: " + update);
-        boolean view = VisaTopLevelPermission.contains(
-                themeDisplay.getPermissionChecker(),
-                themeDisplay.getScopeGroupId(),
-                "VIEW");
-        System.out.println("view: " + view);
-
-
         if (!VisaTopLevelPermission.contains(
                 themeDisplay.getPermissionChecker(),
                 themeDisplay.getScopeGroupId(),
                 "ADD_ENTRY")) {
-            System.out.println("Permission denied");
             return null;
         }
 

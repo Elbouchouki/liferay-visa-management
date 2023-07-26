@@ -73,7 +73,7 @@ public class VisaValidatorImpl implements VisaValidator {
             isValid = false;
         }
 
-        if (etat < 0 || etat > 2) {
+        if (etat < -1 || etat > 1) {
             errors.add("Invalid etat");
             isValid = false;
         }
